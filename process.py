@@ -22,4 +22,4 @@ async def process_image(
 
     # Aquí luego meterás ML
 
-    return JSONResponse(content={"message": "oreo"})
+    return JSONResponse(content={"message": "comando recibido"})
