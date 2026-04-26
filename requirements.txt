@@ -1,3 +1,14 @@
 fastapi
-uvicorn
+uvicorn[standard]
 python-multipart
+ultralytics
+torch
+torchvision
+opencv-python-headless
+matplotlib
+pymongo
+google-genai
+sympy
+pillow
+numpy
+tensorflow
