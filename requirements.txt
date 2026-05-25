@@ -11,4 +11,4 @@ google-genai
 sympy
 pillow
 numpy
-tensorflow
+
