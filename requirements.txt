@@ -4,7 +4,6 @@ python-multipart
 ultralytics-opencv-headless
 torch
 torchvision
-opencv-python-headless
 matplotlib
 pymongo
 google-genai
