@@ -17,13 +17,28 @@ yolo = None
 
 
 @asynccontextmanager
-@asynccontextmanager
 async def lifespan(app: FastAPI):
+    global model, transform, device, yolo
 
-    print("Iniciando servidor de prueba...")
+    print("Iniciando servidor...")
+
+    # Se ejecuta UNA sola vez al arrancar
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print("Usando:", device)
+
+    model = torch.hub.load("intel-isl/MiDaS", "DPT_Hybrid", pretrained=True)
+    model.to(device)
+    model.eval()
+
+    midas_transforms = torch.hub.load("intel-isl/MiDaS", "transforms")
+    transform = midas_transforms.dpt_transform
+    yolo =  YOLO("yolo11n.pt")
+    yolo.to(device)
+    print("Modelo cargado.")
 
     yield
 
+    # opcional al apagar
     print("Apagando servidor...")
 
 #declararemos todos los métodos que teníamos antes
