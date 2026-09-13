@@ -35,25 +35,19 @@ async def lifespan(app: FastAPI):
     print("Dispositivo seleccionado:", device)
 
 
+
     # ------------------------------------
-    # 2. MI-DAS
+    # 4. YOLO
     # ------------------------------------
 
     print("--------------------------------------")
-    print("Cargando MiDaS...")
+    print("Cargando YOLO...")
 
-    model = torch.hub.load(
-        "intel-isl/MiDaS",
-        "DPT_Hybrid",
-        pretrained=True
-    )
+    yolo = YOLO("yolo11n.pt")
 
-    model.to(device)
-    model.eval()
+    yolo.to(device)
 
-    print("¡¡¡ MiDaS cargado correctamente !!!")
-
-
+    print("¡¡¡ YOLO cargado correctamente !!!")
     # ------------------------------------
     # 3. TRANSFORMS
     # ------------------------------------
@@ -72,17 +66,23 @@ async def lifespan(app: FastAPI):
 
 
     # ------------------------------------
-    # 4. YOLO
+    # 2. MI-DAS
     # ------------------------------------
 
     print("--------------------------------------")
-    print("Cargando YOLO...")
+    print("Cargando MiDaS...")
 
-    yolo = YOLO("yolo11n.pt")
+    model = torch.hub.load(
+        "intel-isl/MiDaS",
+        "DPT_Hybrid",
+        pretrained=True
+    )
 
-    yolo.to(device)
+    model.to(device)
+    model.eval()
 
-    print("¡¡¡ YOLO cargado correctamente !!!")
+    print("¡¡¡ MiDaS cargado correctamente !!!")
+
 
 
     # ------------------------------------
