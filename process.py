@@ -295,6 +295,17 @@ def results_to_prompt(results):
 
 app = FastAPI(lifespan=lifespan)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:8000",
+        "https://israel2026-coder.github.io",
+    ],
+    allow_credentials=False,
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
+
 @app.get("/")
 def home():
     return {"status": "ok"}
