@@ -7,6 +7,7 @@ import cv2
 from PIL import Image
 from io import BytesIO
 from fastapi import FastAPI, UploadFile, File, Form, Request
+from fastapi.middleware.cors import CORSMiddleware
 
 
 model = None
